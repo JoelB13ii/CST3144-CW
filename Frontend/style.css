@@ -1,0 +1,553 @@
+/* General Reset */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f7f8fc;
+    color: #333;
+    line-height: 1.6;
+}
+
+/* Header Styling */
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #4a90e2;
+    color: white;
+    padding: 15px 20px;
+    
+}
+
+header h1 {
+    margin: 0 auto; /* Centers the h1 within its flex container */
+    font-size: 2rem;
+}
+
+header button {
+    background-color: #333;
+    color: white;
+    padding: 8px 16px;
+    border: none;
+    border-radius: 5px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    display: flex;
+    align-items: center;
+}
+
+header button:disabled {
+    background-color: #ccc;
+    color: #666;
+    cursor: not-allowed;
+}
+
+header button .fa-cart-shopping {
+    margin-left: 8px;
+}
+
+.activity-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Adjusts columns based on available space */
+    gap: 30px;
+    padding: 10px;
+    max-width: 100%; /* Full width of the screen */
+    margin: 0 auto; /* Center the grid */
+}
+
+
+/* Individual Activity Item Styling */
+.activity-item {
+    background-color: white;
+    border: 1px solid #ddd;
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    transition: transform 0.3s;
+}
+
+.activity-item:hover {
+    transform: translateY(-5px);
+}
+
+/* Image Styling */
+.activity-item img {
+    width: 100%;
+    height: auto;
+    max-height: 200px;
+    object-fit: cover;
+    border-radius: 5px;
+    margin-bottom: 10px;
+}
+
+/* Title Styling */
+.activity-item h2 {
+    font-size: 1.2rem;
+    color: #4a90e2;
+    margin: 10px 0;
+}
+
+/* Price Styling */
+.price {
+    font-weight: bold;
+    color: #333;
+    margin: 10px 0;
+}
+
+/* Availability Text Styling */
+.availability {
+    font-size: 0.9em;
+    color: #888;
+    margin-top: 5px;
+}
+
+/* Rating Stars Styling */
+.rating {
+    color: #ffd700;
+    margin-top: 10px;
+}
+
+/* Add to Cart Button Styling */
+.activity-item button {
+    padding: 8px 12px;
+    border: none;
+    background-color: #4a90e2;
+    color: white;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 10px;
+    transition: background-color 0.3s;
+    width: 100%;
+}
+
+.activity-item button:hover:not(:disabled) {
+    background-color: #357abd;
+}
+
+.activity-item button:disabled {
+    background-color: #ccc;
+    color: #666;
+    cursor: not-allowed;
+}
+
+/* Checkout Form Styling */
+main {
+    padding: 10px;
+}
+
+main h2 {
+    color: #4a90e2;
+}
+
+main input,
+main select {
+    width: 100%;
+    padding: 8px;
+    margin: 8px 0;
+    border: 1px solid red;
+    border-radius: 5px;
+}
+
+/* Place Order Button Styling */
+main button {
+    padding: 10px;
+    background-color: #4a90e2;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    width: 100%;
+    font-size: 1rem;
+    transition: background-color 0.3s;
+}
+
+main button:hover {
+    background-color: #357abd;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .activity-list {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 480px) {
+    .activity-list {
+        grid-template-columns: 1fr;
+    }
+}
+
+.location {
+    font-size: 14px;
+    color: #555;
+    margin-top: 4px;
+}
+
+
+
+
+
+
+
+/* General Reset */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f7f8fc; /* Subtle background color */
+    color: #333;
+    line-height: 1.6;
+    padding: 20px; /* Adds padding for better readability */
+}
+
+/* Main Checkout Container */
+main {
+    max-width: 1200px; /* Increase width for a larger form */
+    margin: 50px auto; /* Center horizontally and add vertical spacing */
+    background-color: #ffffff; /* White background for the form */
+    border-radius: 15px; /* More rounded corners for a softer look */
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15); /* Enhanced shadow for depth */
+    padding: 40px; /* Larger padding for spacious layout */
+    display: flex;
+    flex-direction: column;
+    gap: 30px; /* More space between sections */
+    align-items: center; /* Center align the content inside */
+    justify-content: center; /* Optional: For vertical centering within the container */
+}
+
+
+/* Page Title */
+main h2 {
+    font-size: 2rem;
+    color: #4a90e2; /* Bright blue for emphasis */
+    text-align: center;
+    margin-bottom: 20px;
+    font-weight: bold;
+}
+
+/* Input and Select Fields */
+main input,
+main select {
+    width: 100%;
+    padding: 15px;
+    font-size: 1rem;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background-color: #f9f9f9; /* Light background for inputs */
+    transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+/* Input and Select Focus State */
+main input:focus,
+main select:focus {
+    border-color: #4a90e2;
+    box-shadow: 0 0 8px rgba(74, 144, 226, 0.3);
+    outline: none;
+}
+
+/* Labels for Inputs */
+main label {
+    font-size: 1rem;
+    color: #555;
+    margin-bottom: 8px;
+    display: block;
+    font-weight: 600;
+}
+
+/* Place Order Button */
+main button {
+    width: 100%;
+    padding: 15px;
+    background-color: #4a90e2;
+    color: white;
+    font-size: 1.2rem;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    font-weight: bold;
+}
+
+main button:hover {
+    background-color: #357abd;
+    transform: scale(1.02); /* Slight pop effect */
+}
+
+/* Section Headers */
+.section-header {
+    font-size: 1.5rem;
+    color: #333;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+/* Summary Section */
+.summary-container {
+    background-color: #f7f8fc;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 20px;
+}
+
+.summary-container h3 {
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+.summary-container p {
+    font-size: 1rem;
+    color: #666;
+    margin: 5px 0;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    main {
+        padding: 20px;
+    }
+
+    main h2 {
+        font-size: 1.8rem;
+    }
+
+    main button {
+        font-size: 1rem;
+    }
+}
+
+
+/* General Layout and Spacing */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 0;
+}
+
+/* Header */
+header {
+    background-color: #007bff;
+    color: white;
+    padding: 20px;
+    text-align: center;
+}
+
+header h1 {
+    margin: 0;
+    font-size: 2.5rem;
+}
+
+button {
+    background-color: #ff5722;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-size: 1rem;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+}
+
+button:hover {
+    background-color: #e64a19;
+}
+
+button:disabled {
+    background-color: #bdbdbd;
+    cursor: not-allowed;
+}
+
+
+/* Activity List Styling */
+.activity-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 20px;
+    padding: 20px;
+}
+
+.activity-item {
+    background-color: #fff;
+    border-radius: 8px;
+    padding: 15px;
+    box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.activity-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.15);
+}
+
+.activity-item figure {
+    margin: 0;
+}
+
+.activity-item img {
+    max-width: 100%;
+    border-radius: 5px;
+    transition: opacity 0.3s;
+}
+
+.activity-item img:hover {
+    opacity: 0.85;
+}
+
+.activity-item h2 {
+    font-size: 1.5rem;
+    color: #333;
+    margin: 10px 0;
+}
+
+.activity-item p {
+    font-size: 1rem;
+    color: #666;
+}
+
+.price {
+    font-weight: bold;
+    color: #ff5722;
+}
+
+.location {
+    color: #007bff;
+}
+
+button[disabled] {
+    background-color: #ccc;
+    cursor: not-allowed;
+}
+
+/* Rating */
+.rating {
+    margin-top: 10px;
+}
+
+.rating span {
+    font-size: 1.2rem;
+    color: #ff9800;
+}
+
+
+
+
+
+
+/* Container to hold the Search Bar and Sort By dropdown */
+.search-sort-container {
+    display: flex;
+    justify-content: center; /* Centers them horizontally */
+    align-items: center; /* Centers them vertically */
+    gap: 20px; /* Space between the search bar and dropdown */
+    margin-top: 30px; /* Adds space above the container */
+}
+
+/* Search Bar Styling */
+.search-bar {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    background-color: #ffffff;
+    padding: 12px 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    width: 300px; /* Adjust the width of the search bar */
+    transition: box-shadow 0.3s ease;
+}
+
+.search-bar:hover {
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.15);
+}
+
+.search-bar label {
+    font-size: 1.1rem;
+    color: #333;
+    margin-bottom: 8px;
+}
+
+.search-bar input {
+    width: 100%;
+    padding: 10px 15px;
+    border-radius: 6px;
+    border: 1px solid #ddd;
+    font-size: 1rem;
+    background-color: #f8f8f8;
+    color: #333;
+    transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+.search-bar input:focus {
+    border-color: #007bff;
+    box-shadow: 0 0 6px rgba(0, 123, 255, 0.3);
+    outline: none;
+}
+
+/* Sort By Dropdown Styling */
+.sorting-options {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    background-color: #ffffff;
+    padding: 12px 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    width: 250px; /* Adjust the width of the dropdown */
+    transition: box-shadow 0.3s ease;
+}
+
+.sorting-options:hover {
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.15);
+}
+
+.sorting-options label {
+    font-size: 1.1rem;
+    color: #333;
+    margin-bottom: 8px;
+}
+
+.sorting-options select {
+    width: 100%;
+    padding: 10px 15px;
+    border-radius: 6px;
+    border: 1px solid #ddd;
+    font-size: 1rem;
+    background-color: #f8f8f8;
+    color: #333;
+    transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+.sorting-options select:focus {
+    border-color: #007bff;
+    box-shadow: 0 0 6px rgba(0, 123, 255, 0.3);
+    outline: none;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .search-sort-container {
+        flex-direction: column; /* Stacks them vertically on small screens */
+        gap: 15px; /* Adjust space between elements */
+    }
+
+    .search-bar,
+    .sorting-options {
+        width: 100%; /* Make both elements full width on smaller screens */
+    }
+}
+

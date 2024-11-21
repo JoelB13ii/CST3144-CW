@@ -12,28 +12,37 @@
 
 <body>
     <div id="app">
-        
+
         <header>
             <h1 v-text="sitename"></h1>
             <button @click="showCheckout" :disabled="!cartItemCount">
                 {{ cartItemCount }}
-                <span class="fa-solid fa-cart-shopping"></span> Checkout
+                <span class="fa-solid fa-cart-shopping"></span> Cart
             </button>
         </header>
 
-        <div class="sorting-options">
-            <label for="sort-by">Sort by:</label>
-            <select v-model="selectedSort" id="sort-by">
-                <option value="price-asc">Price: Low to High</option>
-                <option value="price-desc">Price: High to Low</option>
-                <option value="availability">Availability</option>
-                <option value="location">Location</option>
-            </select>
+        <div class="search-sort-container">
+            <!-- Search Bar -->
+            <div class="search-bar" v-if="showClasses">
+                <label for="search">Search Classes:</label>
+                <input type="text" id="search" v-model="searchQuery" placeholder="Search for a class...">
+            </div>
+        
+            <!-- Sorting Options -->
+            <div class="sorting-options" v-if="showClasses">
+                <label for="sort-by">Sort by:</label>
+                <select v-model="selectedSort" id="sort-by">
+                    <option value="price-asc">Price: Low to High</option>
+                    <option value="price-desc">Price: High to Low</option>
+                    <option value="availability">Availability</option>
+                    <option value="location">Location</option>
+                </select>
+            </div>
         </div>
-
+        
         <main>
             <div v-if="showClasses" class="activity-list">
-                <div v-for="activity in sortedActivities" :key="activity.id" class="activity-item">
+                <div v-for="activity in filteredActivities" :key="activity.id" class="activity-item">
                     <figure>
                         <img v-bind:src="activity.image" alt="Activity Image">
                     </figure>
@@ -59,10 +68,10 @@
             <div v-else>
                 <h2>Checkout</h2>
                 <p><strong>First Name:</strong>
-                    <input v-model="order.firstName" />
+                    <input v-model="order.firstName" @input="validateName('firstName')" />
                 </p>
                 <p><strong>Last Name:</strong>
-                    <input v-model="order.lastName" />
+                    <input v-model="order.lastName" @input="validateName('lastName')" />
                 </p>
                 <p><strong>Address:</strong>
                     <input v-model="order.address" />
@@ -76,8 +85,8 @@
                         <option v-for="(state, key) in states" v-bind:value="state">{{ key }}</option>
                     </select>
                 </p>
-                <p><strong>Zip/Postal Code:</strong>
-                    <input v-model="order.zip" />
+                <p><strong>Phone Number:</strong>
+                    <input v-model="order.Number" @input="validateNumber" />
                 </p>
                 <p>
                     <input type="checkbox" id="gift" value="true" v-model="order.gift">
@@ -89,14 +98,15 @@
                     <input type="radio" id="pickup" value="Pickup" v-model="order.method">
                     <label for="pickup">Pickup</label>
                 </p>
-                <button v-on:click="submitForm">Place Order</button>
+                <button v-on:click="submitForm" :disabled="!isFormValid">Place Order</button>
+
 
                 <h2>Order Information</h2>
                 <p>First Name: {{ order.firstName }}</p>
                 <p>Last Name: {{ order.lastName }}</p>
                 <p>Address: {{ order.address }}</p>
                 <p>City: {{ order.city }}</p>
-                <p>Zip: {{ order.zip }}</p>
+                <p>Number: {{ order.Number }}</p>
                 <p>State: {{ order.state }}</p>
                 <p>Gift Order? {{ order.gift }}</p>
                 <p>Delivery Method: {{ order.method }}</p>
@@ -112,12 +122,13 @@
                 activities: activities,
                 selectedSort: 'price-asc',
                 showClasses: true,
+                searchQuery: '', // New data property for search input
                 order: {
                     firstName: '',
                     lastName: '',
                     address: '',
                     city: '',
-                    zip: '',
+                    Number: '',
                     state: '',
                     method: 'Home',
                     gift: false
@@ -127,7 +138,6 @@
                     AR: 'Arizona',
                     CA: 'California',
                     NV: 'Nevada',
-                    // Add more states as needed
                 },
                 cart: []
             },
@@ -147,6 +157,12 @@
                 cartCount(id) {
                     return this.cart.filter(item => item === id).length;
                 },
+                validateNumber() {
+                    this.order.Number = this.order.Number.replace(/[^0-9]/g, '');
+                },
+                validateName(field) {
+                    this.order[field] = this.order[field].replace(/[^a-zA-Z\s]/g, '');
+                }
             },
             computed: {
                 cartItemCount() {
@@ -164,9 +180,27 @@
                         sorted.sort((a, b) => a.location.localeCompare(b.location));
                     }
                     return sorted; // Return sorted activities
-                }
+                },
+                filteredActivities() {
+                    return this.sortedActivities.filter(activity => {
+                        return activity.title.toLowerCase().includes(this.searchQuery.toLowerCase()) || 
+                               activity.description.toLowerCase().includes(this.searchQuery.toLowerCase());
+                    });
+                },
+
+
+                isFormValid() {
+        return this.order.firstName && this.order.lastName && this.order.address && 
+                this.order.Number;
             }
+        }
+                
+          
+
+
         });
+
+
     </script>
 </body>
 
